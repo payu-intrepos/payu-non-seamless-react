@@ -1,0 +1,5 @@
+rootProject.name = 'example'
+include ':payu-non-seam-less-react'
+project(':payu-non-seam-less-react').projectDir = new File(rootProject.projectDir, '../node_modules/payu-non-seam-less-react/android')
+
+include ':app'
