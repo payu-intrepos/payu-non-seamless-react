@@ -15,7 +15,7 @@ const { PayUBizSdk } = NativeModules;
 
 export default class App extends Component<{}> {
   state = {
-    key: 'smsplus',
+    key: '3TnMpV',
     amount: "10",
     productInfo: 'product_info',
     firstName: 'firstname',
@@ -26,12 +26,13 @@ export default class App extends Component<{}> {
     android_surl: 'https://payu.herokuapp.com/success',
     android_furl: 'https://payu.herokuapp.com/failure',
     environment: 0 + "",
-    udf1: '',
-    udf2: '',
-    udf3: '',
-    udf4: '',
-    udf5: '',
-    merchantSalt: '1b1b0',
+    udf1: 'udf1',
+    udf2: 'udf2',
+    udf3: 'udf3',
+    udf4: 'udf4',
+    udf5: 'udf5',
+    merchantSalt: 'g0nGFe03',
+    userCredential: 'umang:arya',
 
 
     primaryColor: "#aabbcc",
@@ -42,7 +43,7 @@ export default class App extends Component<{}> {
     showExitConfirmationOnCheckoutScreen: true,
     showExitConfirmationOnPaymentScreen: true,
     cartDetails: [{ 'Order': 'Value' }, { 'Key Name': 'Value1' }],
-    paymentModesOrder: [{ 'Net Banking': '' }, { 'UPI': 'TEZ' }, { 'Wallets': 'PAYTM' }],
+    paymentModesOrder: [{ 'UPI': 'TEZ' }, { 'Cards': 'PAYTM' },{ 'EMI': '' }],
     surePayCount: 1,
     merchantResponseTimeout: 10000,
     autoSelectOtp: true,
@@ -112,7 +113,7 @@ export default class App extends Component<{}> {
    onPaymentSuccess = (e) => {
       console.log(e.merchantResponse);
       console.log(e.payuResponse);
-      this.displayAlert('onPaymentFailure', JSON.stringify(e));
+      this.displayAlert('onPaymentSuccess', JSON.stringify(e));
     }
     onPaymentFailure = (e) => {
       console.log(e);
@@ -156,20 +157,40 @@ export default class App extends Component<{}> {
           <TextInput style={styles.values} defaultValue={this.state.merchantSalt} onChangeText={text => { this.state.merchantSalt = text }} />
         </View>
         <View style={styles.cell}>
-          <Text style={styles.category}>Merchant Name</Text>
-          <TextInput style={styles.values} defaultValue={this.state.merchantName} onChangeText={text => { this.state.merchantName = text }} />
+          <Text style={styles.category}>Environment</Text>
+          <TextInput style={styles.values} defaultValue={this.state.environment} onChangeText={text => { this.state.environment = text }} />
         </View>
         <View style={styles.cell}>
           <Text style={styles.category}>Enter transcation amount</Text>
           <TextInput style={styles.values} defaultValue={this.state.amount} onChangeText={text => { this.state.amount = text }} />
         </View>
         <View style={styles.cell}>
-          <Text style={styles.category}>Auto Approve Otp</Text>
-          <Switch style={styles.values} value={this.state.autoApprove} onValueChange={this.toggleAutoApproveOTP} />
+          <Text style={styles.category}>Email</Text>
+          <TextInput style={styles.values} defaultValue={this.state.email} onChangeText={text => { this.state.email = text }} />
         </View>
         <View style={styles.cell}>
-          <Text style={styles.category}>SurePay (0-3)</Text>
-          <TextInput style={styles.values} defaultValue={String(this.state.surePayCount)} onChangeText={text => { this.state.surePayCount = parseInt(text) }} />
+          <Text style={styles.category}>User Credential</Text>
+          <TextInput style={styles.values} defaultValue={this.state.userCredential} onChangeText={text => { this.state.userCredential = text }} />
+        </View>
+        <View style={styles.cell}>
+          <Text style={styles.category}>UDF1</Text>
+          <TextInput style={styles.values} defaultValue={this.state.udf1} onChangeText={text => { this.state.udf1 = text }} />
+        </View>
+        <View style={styles.cell}>
+          <Text style={styles.category}>UDF2</Text>
+          <TextInput style={styles.values} defaultValue={this.state.udf2} onChangeText={text => { this.state.udf2 = text }} />
+        </View>
+        <View style={styles.cell}>
+          <Text style={styles.category}>UDF3</Text>
+          <TextInput style={styles.values} defaultValue={this.state.udf3} onChangeText={text => { this.state.udf3 = text }} />
+        </View>
+        <View style={styles.cell}>
+          <Text style={styles.category}>UDF4</Text>
+          <TextInput style={styles.values} defaultValue={this.state.udf4} onChangeText={text => { this.state.udf4 = text }} />
+        </View>
+        <View style={styles.cell}>
+          <Text style={styles.category}>UDF5</Text>
+          <TextInput style={styles.values} defaultValue={this.state.udf5} onChangeText={text => { this.state.udf5 = text }} />
         </View>
         <View style={styles.cell}>
           <Text style={styles.category}>Merchant Surl/Furl Timeout</Text>
@@ -184,19 +205,26 @@ export default class App extends Component<{}> {
           <Switch style={styles.values} value={this.state.merchantSMSPermission} onValueChange={this.togglePermission} />
         </View>
         <View style={styles.cell}>
-          <Text style={styles.category}>Environment</Text>
-          <TextInput style={styles.values} defaultValue={this.state.environment} onChangeText={text => { this.state.environment = text }} />
+          <Text style={styles.category}>Auto Approve Otp</Text>
+          <Switch style={styles.values} value={this.state.autoApprove} onValueChange={this.toggleAutoApproveOTP} />
         </View>
+        <View style={styles.cell}>
+          <Text style={styles.category}>SurePay (0-3)</Text>
+          <TextInput style={styles.values} defaultValue={String(this.state.surePayCount)} onChangeText={text => { this.state.surePayCount = parseInt(text) }} />
+        </View>
+        <View style={styles.cell}>
+          <Text style={styles.category}>Merchant Name</Text>
+          <TextInput style={styles.values} defaultValue={this.state.merchantName} onChangeText={text => { this.state.merchantName = text }} />
+        </View>    
         <Button title={'Pay Now'} onPress={this.launchPayU} />
       </ScrollView>
     );
   }
   createPaymentParams = () => {
-    var userCredential = this.state.key + ':' + this.state.email;
     var txnid = new Date().getTime().toString();
     var paymentHash = this.calculateHash(this.state.key + '|' + txnid + '|' + this.state.amount + '|' + this.state.productInfo + '|' + this.state.firstName + '|' + this.state.email + '|' + this.state.udf1 + '|' + this.state.udf2 + '|' + this.state.udf3 + '|' + this.state.udf4 + '|' + this.state.udf5 + '||||||' + this.state.merchantSalt);
     var vasHash = this.calculateHash(this.state.key + '|vas_for_mobile_sdk|' + "default" + '|' + this.state.merchantSalt);
-    var paymentDetailsHash = this.calculateHash(this.state.key + '|payment_related_details_for_mobile_sdk|' + userCredential + '|' + this.state.merchantSalt);
+    var paymentDetailsHash = this.calculateHash(this.state.key + '|payment_related_details_for_mobile_sdk|' + this.state.userCredential + '|' + this.state.merchantSalt);
 
     var payUPaymentParams = {
       key: this.state.key,
@@ -211,13 +239,13 @@ export default class App extends Component<{}> {
       android_surl: this.state.android_surl,
       android_furl: this.state.android_furl,
       environment: this.state.environment,
-      userCredential: userCredential,
+      userCredential: this.state.userCredential,
       additionalParam: {
-        // udf1: this.state.udf1,
-        // udf2: this.state.udf2,
-        // udf3: this.state.udf3,
-        // udf4: this.state.udf4,
-        // udf5: this.state.udf5,
+        udf1: this.state.udf1,
+        udf2: this.state.udf2,
+        udf3: this.state.udf3,
+        udf4: this.state.udf4,
+        udf5: this.state.udf5,
         // payment_related_details_for_mobile_sdk: paymentDetailsHash,
         // vas_for_mobile_sdk: vasHash,
         // payment: paymentHash
