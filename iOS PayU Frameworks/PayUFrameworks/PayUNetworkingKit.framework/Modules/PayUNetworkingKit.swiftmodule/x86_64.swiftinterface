@@ -1,0 +1,73 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target x86_64-apple-ios10.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name PayUNetworkingKit
+import Foundation
+import PayULoggerKit
+@_exported import PayUNetworkingKit
+import Swift
+public struct PayUURLParameterEncoder {
+  public func encode(urlRequest: inout Foundation.URLRequest, with parameters: PayUNetworkingKit.Parameters) throws
+}
+public typealias Parameters = [Swift.String : Any]
+public enum PayUNetworkError : Swift.String, Swift.Error {
+  case parametersNil
+  case encodingFailed
+  case missingURL
+  public typealias RawValue = Swift.String
+  public init?(rawValue: Swift.String)
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum PayUHTTPMethod : Swift.String {
+  case get
+  case post
+  case put
+  case patch
+  case delete
+  public typealias RawValue = Swift.String
+  public init?(rawValue: Swift.String)
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public typealias HTTPHeaders = [Swift.String : Swift.String]
+public enum PayUHTTPTask {
+  case request
+  case requestParameters(bodyParameters: PayUNetworkingKit.Parameters?, urlParameters: PayUNetworkingKit.Parameters?)
+  case requestParametersAndHeaders(bodyParameters: PayUNetworkingKit.Parameters?, urlParameters: PayUNetworkingKit.Parameters?, additionalHeaders: PayUNetworkingKit.HTTPHeaders?)
+}
+public protocol PayUEndPointType {
+  var baseURL: Foundation.URL { get }
+  var path: Swift.String { get }
+  var httpMethod: PayUNetworkingKit.PayUHTTPMethod { get }
+  var task: PayUNetworkingKit.PayUHTTPTask { get }
+  var headers: PayUNetworkingKit.HTTPHeaders? { get }
+  var destination: PayUNetworkingKit.PayUEncodingDestination? { get }
+}
+extension PayUEndPointType {
+  public var headers: PayUNetworkingKit.HTTPHeaders? {
+    get
+  }
+  public var destination: PayUNetworkingKit.PayUEncodingDestination? {
+    get
+  }
+}
+public struct PayUJSONParameterEncoder {
+  public func encode(urlRequest: inout Foundation.URLRequest, with parameters: PayUNetworkingKit.Parameters) throws
+}
+public class PayURouter<EndPoint> where EndPoint : PayUNetworkingKit.PayUEndPointType {
+  public init()
+  public func request(_ route: EndPoint, completion: @escaping PayUNetworkingKit.NetworkRouterCompletion)
+  @objc deinit
+}
+public enum PayUEncodingDestination {
+  case queryString
+  case httpBody
+  public static func == (a: PayUNetworkingKit.PayUEncodingDestination, b: PayUNetworkingKit.PayUEncodingDestination) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public typealias NetworkRouterCompletion = (Foundation.Data?, Swift.Error?) -> ()

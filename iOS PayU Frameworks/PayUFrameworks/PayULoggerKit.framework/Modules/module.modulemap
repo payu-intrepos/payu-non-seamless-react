@@ -1,0 +1,11 @@
+framework module PayULoggerKit {
+  umbrella header "PayULoggerKit.h"
+
+  export *
+  module * { export * }
+}
+
+module PayULoggerKit.Swift {
+    header "PayULoggerKit-Swift.h"
+    requires objc
+}

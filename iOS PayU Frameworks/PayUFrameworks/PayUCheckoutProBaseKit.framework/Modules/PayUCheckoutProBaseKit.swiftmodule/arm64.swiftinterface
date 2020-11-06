@@ -1,0 +1,246 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name PayUCheckoutProBaseKit
+import Foundation
+@_exported import PayUCheckoutProBaseKit
+import Swift
+import UIKit
+@objc @_inheritsConvenienceInitializers public class BaseAPIResponse : ObjectiveC.NSObject {
+  public var error: Swift.Error?
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @_inheritsConvenienceInitializers public class FetchPaymentOptionResponse : PayUCheckoutProBaseKit.BaseAPIResponse {
+  @objc override dynamic public init()
+  public var quickPaymentOption: [PayUCheckoutProBaseKit.PaymentMode]?
+  public var otherPaymentOption: [PayUCheckoutProBaseKit.PaymentMode]?
+  @objc deinit
+}
+@objc @objcMembers public class PayUPaymentParam : ObjectiveC.NSObject {
+  @objc public var key: Swift.String
+  @objc public var transactionId: Swift.String
+  @objc public var amount: Swift.String
+  @objc public var productInfo: Swift.String
+  @objc public var firstName: Swift.String
+  @objc public var email: Swift.String
+  @objc public var phone: Swift.String
+  @objc public var surl: Swift.String
+  @objc public var furl: Swift.String
+  @objc public var userCredential: Swift.String?
+  @objc public var additionalParam: [Swift.String : Any]
+  @objc public var environment: PayUCheckoutProBaseKit.Environment
+  @objc public init(key: Swift.String, transactionId: Swift.String, amount: Swift.String, productInfo: Swift.String, firstName: Swift.String, email: Swift.String, phone: Swift.String, surl: Swift.String, furl: Swift.String, environment: PayUCheckoutProBaseKit.Environment)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc public enum Environment : Swift.Int {
+  case production = 0
+  case test
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @objcMembers public class PaymentMode : ObjectiveC.NSObject, Foundation.NSCopying {
+  @objc public var modeName: Swift.String?
+  @objc public var subHeading: Swift.String?
+  @objc public var offerDetail: Swift.String?
+  @objc public var paymentType: PayUCheckoutProBaseKit.PaymentType
+  @objc public var options: [PayUCheckoutProBaseKit.PaymentOption]?
+  @objc public var isDirectPaymentMode: Swift.Bool
+  @objc public init(modeName: Swift.String? = nil, subHeading: Swift.String? = nil, offerDetail: Swift.String? = nil, paymentType: PayUCheckoutProBaseKit.PaymentType, options: [PayUCheckoutProBaseKit.PaymentOption]? = nil)
+  @objc convenience public init(paymentType: PayUCheckoutProBaseKit.PaymentType, paymentOptionID: Swift.String? = nil)
+  @objc public class func getPaymentModeFrom(paymentModes: [PayUCheckoutProBaseKit.PaymentMode]?, paymentType: PayUCheckoutProBaseKit.PaymentType) -> PayUCheckoutProBaseKit.PaymentMode?
+  @objc public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class PaymentOption : ObjectiveC.NSObject {
+  @objc public var title: Swift.String?
+  @objc public var unavailableReason: Swift.String?
+  @objc public var offerDetail: Swift.String?
+  @objc public var paymentOptionID: Swift.String?
+  @objc public var customObj: Any?
+  @objc public var paymentType: PayUCheckoutProBaseKit.PaymentType {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class NetBanking : PayUCheckoutProBaseKit.PaymentOption {
+  @objc public var maskedAccountNumber: Swift.String?
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class CCDC : PayUCheckoutProBaseKit.PaymentOption {
+  @objc public var cardNumber: Swift.String?
+  public var expiryMonth: Swift.Int?
+  public var expiryYear: Swift.Int?
+  @objc public var cvv: Swift.String?
+  @objc public var nameOnCard: Swift.String?
+  @objc public var cardAlias: Swift.String?
+  @objc public var shouldSaveCard: Swift.Bool
+  public var cardBinInfo: PayUCheckoutProBaseKit.CardBinInfo?
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class SavedCard : PayUCheckoutProBaseKit.CCDC {
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class UPI : PayUCheckoutProBaseKit.PaymentOption {
+  public var isCollect: Swift.Bool?
+  @objc public var vpa: Swift.String?
+  @objc public var scheme: Swift.String?
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @objcMembers public class EMI : PayUCheckoutProBaseKit.CCDC {
+  public var month: Swift.Int?
+  @objc public var bankShortName: Swift.String
+  @objc public var supportedBins: [Swift.String]?
+  @objc public var minimumTxnAmount: Swift.Double
+  public var emiValue: Swift.Double?
+  public var interestRate: Swift.Double?
+  public var interestCharged: Swift.Double?
+  public init(month: Swift.Int? = nil, bankShortName: Swift.String, title: Swift.String, paymentOptionId: Swift.String)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class Wallet : PayUCheckoutProBaseKit.PaymentOption {
+  @objc public var maskedAccountNumber: Swift.String?
+  @objc public var phoneNumber: Swift.String?
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objcMembers public class CardBinInfo {
+  @objc public init()
+  public var cardScheme: PayUCheckoutProBaseKit.CardScheme?
+  public var cardType: PayUCheckoutProBaseKit.CardType?
+  public var isDomestic: Swift.Bool?
+  @objc public var bankName: Swift.String?
+  @objc deinit
+}
+@objc public enum CardType : Swift.Int {
+  case cc
+  case dc
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum CardScheme : Swift.Int {
+  case masterCard
+  case visa
+  case jcb
+  case amex
+  case maestro
+  case rupay
+  case discover
+  case dinersClub
+  case laser
+  case stateBankMaestro
+  case unknown
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum PaymentType : Swift.Int {
+  case ccdc
+  case savedCard
+  case netBanking
+  case upi
+  case wallet
+  case emi
+  case other
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers public class ImageParam : ObjectiveC.NSObject {
+  public var paymentOption: PayUCheckoutProBaseKit.PaymentOption?
+  public var isForCardScheme: Swift.Bool
+  @objc deinit
+  @objc override dynamic public init()
+}
+public typealias DictOfString = [Swift.String : Swift.String]
+public typealias PayUHashGenerationCompletion = (PayUCheckoutProBaseKit.DictOfString) -> ()
+public typealias FetchPaymentOptionCompletion = (PayUCheckoutProBaseKit.FetchPaymentOptionResponse) -> ()
+public typealias GetBinInfoOfCard = (PayUCheckoutProBaseKit.CardBinInfo?, Swift.Error?) -> ()
+public typealias ErrorCompletion = (Swift.Error?) -> ()
+public typealias ImageCompletion = (UIKit.UIImage?) -> ()
+public typealias CheckEligibilityCompletion = (PayUCheckoutProBaseKit.CheckEligibilityResponse) -> ()
+public typealias EMICompletion = (PayUCheckoutProBaseKit.PaymentMode?, Swift.Error?) -> ()
+@objc public protocol OnePayUBaseLayerDelegate : AnyObject {
+  @objc func paymentSuccess(response: Any?)
+  @objc func paymentFailure(response: Any?)
+  @objc func paymentCancelled(response: Any?, fromPaymentScreen: Swift.Bool)
+  @objc func error(_ error: Swift.Error?)
+  @objc func getHash(for param: PayUCheckoutProBaseKit.DictOfString, onCompletion: @escaping PayUCheckoutProBaseKit.PayUHashGenerationCompletion)
+  @objc func nextStep(_ nextStep: PayUCheckoutProBaseKit.NextStep?)
+}
+@objc public protocol OnePayUBaseIndividualPaymentDelegate : AnyObject {
+  @objc func upiCollectTransactionRemainingTime(_ remainingTime: Swift.Int)
+}
+@objc @objcMembers open class BaseLayer : ObjectiveC.NSObject {
+  @objc open var basePaymentParam: PayUCheckoutProBaseKit.PayUPaymentParam
+  @objc weak open var delegate: PayUCheckoutProBaseKit.OnePayUBaseLayerDelegate?
+  @objc weak open var individualPaymentDelegate: PayUCheckoutProBaseKit.OnePayUBaseIndividualPaymentDelegate?
+  @objc public init(paymentParam: PayUCheckoutProBaseKit.PayUPaymentParam)
+  @objc open func fetchPaymentOptions(onCompletion: @escaping PayUCheckoutProBaseKit.FetchPaymentOptionCompletion)
+  @objc open func makePayment(paymentOption: PayUCheckoutProBaseKit.PaymentOption, screenState: PayUCheckoutProBaseKit.ScreenState = .none, onViewController: UIKit.UIViewController, onError: @escaping PayUCheckoutProBaseKit.ErrorCompletion)
+  @objc open func cancelCurrentPayment() -> Swift.Bool
+  open func getBinInfoOf(cardNumber: Swift.String, onCompletion: @escaping PayUCheckoutProBaseKit.GetBinInfoOfCard)
+  @objc open func image(of imageParam: PayUCheckoutProBaseKit.ImageParam, onCompletion: @escaping PayUCheckoutProBaseKit.ImageCompletion)
+  @objc open func checkEligibility(paymentOption: PayUCheckoutProBaseKit.PaymentOption, onCompletion: @escaping PayUCheckoutProBaseKit.CheckEligibilityCompletion)
+  @objc open func emiDetails(onCompletion: @escaping PayUCheckoutProBaseKit.EMICompletion)
+  @objc open func deleteSavedOption(paymentOption: PayUCheckoutProBaseKit.PaymentOption, onCompletion: @escaping PayUCheckoutProBaseKit.CheckEligibilityCompletion)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc public enum ScreenState : Swift.Int {
+  case none
+  case phoneNumberScreen
+  case vpaEntry
+  case upiIntentProcessing
+  case upiCollectProcessing
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc public class NextStep : ObjectiveC.NSObject {
+  public var screenState: PayUCheckoutProBaseKit.ScreenState
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @_inheritsConvenienceInitializers public class CheckEligibilityResponse : PayUCheckoutProBaseKit.BaseAPIResponse {
+  @objc override dynamic public init()
+  public var status: Swift.Bool?
+  public var apiFailed: Swift.Bool?
+  public var successMsg: Swift.String?
+  public var failureMsg: Swift.String?
+  @objc deinit
+}
+extension PayUCheckoutProBaseKit.Environment : Swift.Equatable {}
+extension PayUCheckoutProBaseKit.Environment : Swift.Hashable {}
+extension PayUCheckoutProBaseKit.Environment : Swift.RawRepresentable {}
+extension PayUCheckoutProBaseKit.CardType : Swift.Equatable {}
+extension PayUCheckoutProBaseKit.CardType : Swift.Hashable {}
+extension PayUCheckoutProBaseKit.CardType : Swift.RawRepresentable {}
+extension PayUCheckoutProBaseKit.CardScheme : Swift.Equatable {}
+extension PayUCheckoutProBaseKit.CardScheme : Swift.Hashable {}
+extension PayUCheckoutProBaseKit.CardScheme : Swift.RawRepresentable {}
+extension PayUCheckoutProBaseKit.PaymentType : Swift.Equatable {}
+extension PayUCheckoutProBaseKit.PaymentType : Swift.Hashable {}
+extension PayUCheckoutProBaseKit.PaymentType : Swift.RawRepresentable {}
+extension PayUCheckoutProBaseKit.ScreenState : Swift.Equatable {}
+extension PayUCheckoutProBaseKit.ScreenState : Swift.Hashable {}
+extension PayUCheckoutProBaseKit.ScreenState : Swift.RawRepresentable {}

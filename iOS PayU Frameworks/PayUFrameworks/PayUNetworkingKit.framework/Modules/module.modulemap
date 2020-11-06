@@ -1,0 +1,11 @@
+framework module PayUNetworkingKit {
+  umbrella header "PayUNetworkingKit.h"
+
+  export *
+  module * { export * }
+}
+
+module PayUNetworkingKit.Swift {
+    header "PayUNetworkingKit-Swift.h"
+    requires objc
+}

@@ -1,0 +1,11 @@
+framework module PayUCheckoutProKit {
+  umbrella header "PayUCheckoutProKit.h"
+
+  export *
+  module * { export * }
+}
+
+module PayUCheckoutProKit.Swift {
+    header "PayUCheckoutProKit-Swift.h"
+    requires objc
+}

@@ -1,0 +1,11 @@
+framework module PayUUPICoreKit {
+  umbrella header "PayUUPICoreKit.h"
+
+  export *
+  module * { export * }
+}
+
+module PayUUPICoreKit.Swift {
+    header "PayUUPICoreKit-Swift.h"
+    requires objc
+}
