@@ -1,0 +1,10 @@
+{
+  "commitish" : "v15.1.0",
+  "iOS" : [
+    {
+      "name" : "SocketIO",
+      "hash" : "f5f9b30b89bd1a1389afdff24fc3512020e993cb930e6feb40c47fcdcecf1ec7",
+      "swiftToolchainVersion" : "5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+    }
+  ]
+}
