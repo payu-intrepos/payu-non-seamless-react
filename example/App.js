@@ -33,8 +33,8 @@ export default class App extends Component<{}> {
     udf5: 'udf5',
     merchantSalt: 'g0nGFe03',
     userCredential: 'umang:arya',
-
-
+      enableSI: false,
+      enableOffers: false,
     primaryColor: "#aabbcc",
     secondaryColor: "#000000",
     //Need to check how we can set default Value in textField from state
@@ -65,6 +65,14 @@ export default class App extends Component<{}> {
   toggleAutoApproveOTP = (value) => {
     this.setState({ autoApprove: value })
   }
+
+  toggleEnableSI = (value) => {
+        this.setState({ enableSI: value })
+    }
+    toggleEnableOffers = (value) => {
+        this.setState({ enableOffers: value })
+    }
+
   toggleSelectOTP = (value) => {
     this.setState({ autoSelectOtp: value })
   }
@@ -207,7 +215,16 @@ export default class App extends Component<{}> {
         <View style={styles.cell}>
           <Text style={styles.category}>Auto Approve Otp</Text>
           <Switch style={styles.values} value={this.state.autoApprove} onValueChange={this.toggleAutoApproveOTP} />
-        </View>
+            </View>
+            <View style={styles.cell}>
+                <Text style={styles.category}>Enable SI</Text>
+                <Switch style={styles.values} value={this.state.enableSI} onValueChange={this.toggleEnableSI} />
+            </View>
+            <View style={styles.cell}>
+                <Text style={styles.category}>Enable Offers</Text>
+                <Switch style={styles.values} value={this.state.enableOffers} onValueChange={this.toggleEnableOffers} />
+            </View>
+
         <View style={styles.cell}>
           <Text style={styles.category}>SurePay (0-3)</Text>
           <TextInput style={styles.values} defaultValue={String(this.state.surePayCount)} onChangeText={text => { this.state.surePayCount = parseInt(text) }} />
@@ -251,6 +268,20 @@ export default class App extends Component<{}> {
         // payment: paymentHash
       }
     }
+      var siParamObject = {
+          isFreeTrial: true,
+          billingAmount: '10',
+          billingInterval: 1,
+          paymentStartDate: '2023-04-20',
+          paymentEndDate: '2023-04-30',
+          billingCycle: 'daily', //Can be any of 'daily','weekly','yearly','adhoc','once','monthly'
+          remarks: 'Test SI transcaction',
+          billingCurrency: 'INR'
+      }
+      if (this.state.enableSI) {
+          console.log('Inside enableSI')
+          payUPaymentParams.payUSIParams = siParamObject
+      }
 
     var payUCheckoutProConfig = {
       primaryColor: this.state.primaryColor,
