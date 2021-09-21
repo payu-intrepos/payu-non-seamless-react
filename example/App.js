@@ -32,7 +32,7 @@
      const [udf3, setUdf3] = useState('udf3');
      const [udf4, setUdf4] = useState('udf4');
      const [udf5, setUdf5] = useState('udf5');
-     const [merchantSalt, setMerchantSalt] = useState('g0nGFe03');
+     const [merchantSalt, setMerchantSalt] = useState('<Enter your salt here>');
  
      const [userCredential, setUserCredential] = useState('umang:arya');
  
