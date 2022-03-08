@@ -15,7 +15,7 @@
  
  export default App= () => {
  
-     const [key, setKey] = useState('3TnMpV');
+     const [key, setKey] = useState('gtKFFx');
      const [amount, setAmount] = useState("10");
      const [productInfo, setProductInfo] = useState('productInfo');
      const [firstName, setFirstName] = useState('firstName');
@@ -24,7 +24,7 @@
      const [ios_surl, setIosSurl] = useState('https://payu.herokuapp.com/ios_success');
      const [ios_furl, setIosFurl] = useState('https://payu.herokuapp.com/ios_failure');
  
-     const [environment, setEnvironment] = useState(0 + "");
+     const [environment, setEnvironment] = useState(1 + "");
      const [android_surl, setAndroidSurl] = useState('https://payu.herokuapp.com/success');
      const [android_furl, setAndroidFurl] = useState('https://payu.herokuapp.com/failure');
      const [udf1, setUdf1] = useState('udf1');
@@ -33,6 +33,7 @@
      const [udf4, setUdf4] = useState('udf4');
      const [udf5, setUdf5] = useState('udf5');
      const [merchantSalt, setMerchantSalt] = useState('<Enter your salt here>');
+
  
      const [userCredential, setUserCredential] = useState('umang:arya');
  
@@ -46,11 +47,12 @@
      const [showExitConfirmationOnPaymentScreen, setShowExitConfirmationOnPaymentScreen] = useState(true);
  
      const [cartDetails, setCartDetails] = useState([{ 'Order': 'Value' }, { 'Key Name': 'Value1' }]);
-     const [paymentModesOrder, setPaymentModesOrder] = useState([{ 'UPI': 'TEZ' }, { 'Cards': 'PAYTM' }, { 'EMI': '' }]);
+     const [paymentModesOrder, setPaymentModesOrder] = useState([{ 'UPI': 'TEZ' }, { 'Wallets': 'PAYTM' }, { 'EMI': '' },{'Wallets': 'PHONEPE'}]);
      const [surePayCount, setSurePayCount] = useState(1);
      const [merchantResponseTimeout, setMerchantResponseTimeout] = useState(10000);
      //const [showExitConfirmationOnPaymentScreen, setShowExitConfirmationOnPaymentScreen] = useState(true);
      const [autoSelectOtp, setAutoSelectOtp] = useState(true);
+     const [enforcePaymentEnable, setEnforcePaymentEnable] = useState(true);
      const [showCbToolbar, setShowCbToolbar] = useState(true);
      const [autoApprove, setAutoApprove] = useState(false);
      const [merchantSMSPermission, setMerchantSMSPermission] = useState(false);
@@ -85,6 +87,10 @@
          setAutoSelectOtp(value);
          //setState({ autoSelectOtp: value })
      }
+     toggleEnforcePaymentEnable = (value) => {
+        setEnforcePaymentEnable(value);
+        //setState({ autoSelectOtp: value })
+    }
      toggleViewPort = (value) => {
  
          //setState({ viewPortWideEnable: value })
@@ -230,6 +236,9 @@
              merchantSMSPermission: merchantSMSPermission,
              showCbToolbar: showCbToolbar,
          }
+         if (enforcePaymentEnable) {
+            payUCheckoutProConfig["enforcePaymentList"] = [{'payment_type' :"NB"}, {'payment_type' :"CARD"}];
+         }
         
          return {
              payUPaymentParams: payUPaymentParams,
@@ -310,6 +319,10 @@
              <View style={styles.cell}>
                  <Text style={styles.category}>Auto Select Otp</Text>
                  <Switch style={styles.values} value={autoSelectOtp} onValueChange={toggleSelectOTP} />
+             </View>
+             <View style={styles.cell}>
+                 <Text style={styles.category}>Enable enforce Payment</Text>
+                 <Switch style={styles.values} value={enforcePaymentEnable} onValueChange={toggleEnforcePaymentEnable} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>SMS Permission</Text>
