@@ -32,13 +32,11 @@
      const [udf3, setUdf3] = useState('udf3');
      const [udf4, setUdf4] = useState('udf4');
      const [udf5, setUdf5] = useState('udf5');
-     const [merchantSalt, setMerchantSalt] = useState('<Enter your salt here>');
-
+     const [merchantSalt, setMerchantSalt] = useState('wia56q6O');
  
      const [userCredential, setUserCredential] = useState('umang:arya');
  
      const [enableSI, setEnableSI] = useState(false);
-     const [enableOffers, setEnableOffers] = useState(false);
      const [primaryColor, setPrimaryColor] = useState('#aabbcc');
      const [secondaryColor, setSecondaryColor] = useState('#000000');
      const [merchantName, setMerchantName] = useState("Rashan vala");
@@ -78,10 +76,7 @@
          setEnableSI(value);
          //setState({ enableSI: value })
      }
-     toggleEnableOffers = (value) => {
-         setEnableOffers(value);
-         //setState({ enableOffers: value })
-     }
+    
  
      toggleSelectOTP = (value) => {
          setAutoSelectOtp(value);
@@ -144,7 +139,7 @@
             payUGenerateHash.remove();
        }
 
-     }, [])
+     }, [merchantSalt])
  
      onPaymentSuccess = (e) => {
          console.log(e.merchantResponse);
@@ -172,9 +167,6 @@
      }
      createPaymentParams = () => {
          var txnid = new Date().getTime().toString();
-         var paymentHash = calculateHash(key + '|' + txnid + '|' + amount + '|' + productInfo + '|' + firstName + '|' + email + '|' + udf1 + '|' + udf2 + '|' + udf3 + '|' + udf4 + '|' + udf5 + '||||||' + merchantSalt);
-         var vasHash = calculateHash(key + '|vas_for_mobile_sdk|' + "default" + '|' + merchantSalt);
-         var paymentDetailsHash = calculateHash(key + '|payment_related_details_for_mobile_sdk|' + userCredential + '|' + merchantSalt);
          console.log('AutoSelectOtp: '+autoSelectOtp +'MerchantSmsPermission: '+merchantSMSPermission);
          var payUPaymentParams = {
              key: key,
@@ -195,13 +187,7 @@
                  udf2: udf2,
                  udf3: udf3,
                  udf4: udf4,
-                 udf5: udf5,
-                 // payment_related_details_for_mobile_sdk:paymentDetailsHash,
-                 // vas_for_mobile_sdk: vasHash
-                 // paymentHash:paymentHash
-                 // payment_related_details_for_mobile_sdk: paymentDetailsHash,
-                 // vas_for_mobile_sdk: vasHash,
-                 // payment: paymentHash
+                 udf5: udf5,        
              }
          }
          var siParamObject = {
@@ -335,10 +321,6 @@
              <View style={styles.cell}>
                  <Text style={styles.category}>Enable SI</Text>
                  <Switch style={styles.values} value={enableSI} onValueChange={toggleEnableSI} />
-             </View>
-             <View style={styles.cell}>
-                 <Text style={styles.category}>Enable Offers</Text>
-                 <Switch style={styles.values} value={enableOffers} onValueChange={toggleEnableOffers} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>SurePay (0-3)</Text>

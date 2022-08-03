@@ -4,10 +4,11 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '11.0'
 
 target 'example' do
-  use_frameworks!
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
-  pod 'react-native-biz-sdk', :path => '../node_modules/payu-non-seam-less-react'
+  use_frameworks!
+
 end
+
