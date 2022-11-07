@@ -108,6 +108,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libfbjni.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/arm64-v8a/libfbjni.so' 
+        pickFirst 'lib/x86_64/libfbjni.so'
+        pickFirst 'lib/x86/libfbjni.so' 
+        pickFirst 'lib/x86/libc++_shared.so' 
+         pickFirst 'lib/x86_64/libc++_shared.so' 
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so' 
+    }
 
     defaultConfig {
         applicationId "com.example"
@@ -158,16 +168,31 @@ android {
 
 dependencies {
     if (enableHermes) {
-        def hermesPath = "../../node_modules/hermes-engine/android/";
-        debugImplementation files(hermesPath + "hermes-debug.aar")
-        releaseImplementation files(hermesPath + "hermes-release.aar")
+    //noinspection GradleDynamicVersion
+        implementation("com.facebook.react:hermes-engine:+") { // From node_modules
+            exclude group:'com.facebook.fbjni'
+        }
     } else {
         implementation jscFlavor
     }
     implementation project(':payu-non-seam-less-react')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation ("com.facebook.react:react-native:+") {
+       exclude group:'com.facebook.fbjni'
+    }
+    implementation('com.facebook.flipper:flipper:0.173.0') {
+       exclude group:'com.facebook.fbjni'
+    }
+    implementation('com.facebook.flipper:flipper-network-plugin:0.173.0') {
+             exclude group:'com.facebook.fbjni' 
+             exclude group:'com.facebook.flipper'
+    }
+    implementation('com.facebook.flipper:flipper-fresco-plugin:0.173.0') {
+       exclude group:'com.facebook.fbjni' 
+       exclude group:'com.facebook.flipper'
+    }
+
 }
 
 // Run this once to be able to run the application with BUCK

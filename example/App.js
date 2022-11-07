@@ -32,7 +32,7 @@
      const [udf3, setUdf3] = useState('udf3');
      const [udf4, setUdf4] = useState('udf4');
      const [udf5, setUdf5] = useState('udf5');
-     const [merchantSalt, setMerchantSalt] = useState('wia56q6O');
+     const [merchantSalt, setMerchantSalt] = useState('4R38IvwiV57FwVpsgOvTXBdLE4tHUXFW');
  
      const [userCredential, setUserCredential] = useState('umang:arya');
  
@@ -252,85 +252,85 @@
      return (
          <ScrollView style={styles.container}>
              <View >
-             <Text style={styles.welcome}>☆PayUCheckoutPro Sample App☆</Text> 
+             <Text style={styles.welcome}>☆ PayUCheckoutPro ☆{'\n'}Sample App</Text> 
              </View> 
              <View style={styles.cell}>
                  <Text style={styles.category}>Merchant Key</Text>
-                 <TextInput style={styles.values} defaultValue={key} onChangeText={text => { setKey(text)}} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={key} onChangeText={text => { setKey(text)}} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>Merchant Salt</Text>
-                 <TextInput style={styles.values} defaultValue={merchantSalt} onChangeText={text => { setMerchantSalt(text) }} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={merchantSalt} onChangeText={text => { setMerchantSalt(text) }} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>Environment</Text>
-                 <TextInput style={styles.values} defaultValue={environment} onChangeText={text => { setEnvironment(text) }} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={environment} onChangeText={text => { setEnvironment(text) }} />
              </View>
              <View style={styles.cell}>
-                 <Text style={styles.category}>Enter transcation amount</Text>
-                 <TextInput style={styles.values} defaultValue={amount} onChangeText={text => { setAmount(text) }} />
+                 <Text style={styles.category}>Enter Transcation{'\n'}Amount</Text>
+                 <TextInput style={styles.valuesTextInput} defaultValue={amount} onChangeText={text => { setAmount(text) }} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>Email</Text>
-                 <TextInput style={styles.values} defaultValue={email} onChangeText={text => { setEmail(text) }} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={email} onChangeText={text => { setEmail(text) }} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>User Credential</Text>
-                 <TextInput style={styles.values} defaultValue={userCredential} onChangeText={text => { setUserCredential(text) }} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={userCredential} onChangeText={text => { setUserCredential(text) }} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>UDF1</Text>
-                 <TextInput style={styles.values} defaultValue={udf1} onChangeText={text => { setUdf1(text) }} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={udf1} onChangeText={text => { setUdf1(text) }} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>UDF2</Text>
-                 <TextInput style={styles.values} defaultValue={udf2} onChangeText={text => { setUdf2(text)}} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={udf2} onChangeText={text => { setUdf2(text)}} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>UDF3</Text>
-                 <TextInput style={styles.values} defaultValue={udf3} onChangeText={text => { setUdf3(text)}} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={udf3} onChangeText={text => { setUdf3(text)}} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>UDF4</Text>
-                 <TextInput style={styles.values} defaultValue={udf4} onChangeText={text => { setUdf4(text)}} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={udf4} onChangeText={text => { setUdf4(text)}} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>UDF5</Text>
-                 <TextInput style={styles.values} defaultValue={udf5} onChangeText={text => { setUdf5(text) }} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={udf5} onChangeText={text => { setUdf5(text) }} />
              </View>
              <View style={styles.cell}>
-                 <Text style={styles.category}>Merchant Surl/Furl Timeout</Text>
-                 <TextInput style={styles.values} defaultValue={String(merchantResponseTimeout)} onChangeText={text => { setMerchantResponseTimeout( parseInt(text)) }} />
+                 <Text style={styles.category}>Merchant Surl/Furl{'\n'}Timeout</Text>
+                 <TextInput style={styles.valuesTextInput} defaultValue={String(merchantResponseTimeout)} onChangeText={text => { setMerchantResponseTimeout( parseInt(text)) }} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>Auto Select Otp</Text>
-                 <Switch style={styles.values} value={autoSelectOtp} onValueChange={toggleSelectOTP} />
+                 <Switch style={styles.valuesSwitch} value={autoSelectOtp} onValueChange={toggleSelectOTP} />
              </View>
              <View style={styles.cell}>
-                 <Text style={styles.category}>Enable enforce Payment</Text>
-                 <Switch style={styles.values} value={enforcePaymentEnable} onValueChange={toggleEnforcePaymentEnable} />
+                 <Text style={styles.category}>Enable enforce{'\n'}Payment</Text>
+                 <Switch style={styles.valuesSwitch} value={enforcePaymentEnable} onValueChange={toggleEnforcePaymentEnable} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>SMS Permission</Text>
-                 <Switch style={styles.values} value={merchantSMSPermission} onValueChange={togglePermission} />
+                 <Switch style={styles.valuesSwitch} value={merchantSMSPermission} onValueChange={togglePermission} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>Auto Approve Otp</Text>
-                 <Switch style={styles.values} value={autoApprove} onValueChange={toggleAutoApproveOTP} />
+                 <Switch style={styles.valuesSwitch} value={autoApprove} onValueChange={toggleAutoApproveOTP} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>Enable SI</Text>
-                 <Switch style={styles.values} value={enableSI} onValueChange={toggleEnableSI} />
+                 <Switch style={styles.valuesSwitch} value={enableSI} onValueChange={toggleEnableSI} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>SurePay (0-3)</Text>
-                 <TextInput style={styles.values} defaultValue={String(surePayCount)} onChangeText={text => { setSurePayCount(parseInt(text) )}} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={String(surePayCount)} onChangeText={text => { setSurePayCount(parseInt(text) )}} />
              </View>
              <View style={styles.cell}>
                  <Text style={styles.category}>Merchant Name</Text>
-                 <TextInput style={styles.values} defaultValue={merchantName} onChangeText={text => { setMerchantName(text) }} />
+                 <TextInput style={styles.valuesTextInput} defaultValue={merchantName} onChangeText={text => { setMerchantName(text) }} />
              </View>
-             <Button title={'Pay Now'} onPress={()=>{launchPayU()}} />
+             <Button title={'Pay Now'}  onPress={()=>{launchPayU()}} />
          </ScrollView>
      );
  }
@@ -351,7 +351,7 @@
          marginBottom: 20,
          padding:10,
          backgroundColor: '#6495DD',
-         
+         fontWeight:"bold"  
      },
      category: {
          fontSize: 14,
@@ -362,6 +362,19 @@
          fontSize: 14,
          textAlign: 'right'
      },
+     valuesTextInput: {
+        fontSize: 14,
+        textAlign: 'right',
+        width:180,
+        borderWidth: .5,
+        borderRadius: 5,
+        padding: 10,
+        backgroundColor:'#F2F3F4'
+    },
+     valuesSwitch: {
+        fontSize: 14,
+        textAlign: 'right'
+    },
      instructions: {
          textAlign: 'center',
          color: '#333333',
