@@ -32,7 +32,7 @@
      const [udf3, setUdf3] = useState('udf3');
      const [udf4, setUdf4] = useState('udf4');
      const [udf5, setUdf5] = useState('udf5');
-     const [merchantSalt, setMerchantSalt] = useState('4R38IvwiV57FwVpsgOvTXBdLE4tHUXFW');
+     const [merchantSalt, setMerchantSalt] = useState('1b1b0');
  
      const [userCredential, setUserCredential] = useState('umang:arya');
  
@@ -50,7 +50,7 @@
      const [merchantResponseTimeout, setMerchantResponseTimeout] = useState(10000);
      //const [showExitConfirmationOnPaymentScreen, setShowExitConfirmationOnPaymentScreen] = useState(true);
      const [autoSelectOtp, setAutoSelectOtp] = useState(true);
-     const [enforcePaymentEnable, setEnforcePaymentEnable] = useState(true);
+     const [enforcePaymentEnable, setEnforcePaymentEnable] = useState(false);
      const [showCbToolbar, setShowCbToolbar] = useState(true);
      const [autoApprove, setAutoApprove] = useState(false);
      const [merchantSMSPermission, setMerchantSMSPermission] = useState(false);
@@ -187,7 +187,8 @@
                  udf2: udf2,
                  udf3: udf3,
                  udf4: udf4,
-                 udf5: udf5,        
+                 udf5: udf5, 
+                 walletUrn:'100000'
              }
          }
          var siParamObject = {

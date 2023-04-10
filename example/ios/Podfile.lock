@@ -12,42 +12,42 @@ PODS:
   - glog (0.3.5)
   - PayUIndia-Analytics (3.0.0):
     - PayUIndia-NetworkReachability (~> 1.0)
-  - PayUIndia-AssetLibrary (3.2.0)
+  - PayUIndia-AssetLibrary (3.3.0)
   - PayUIndia-CardScanner (1.0.0)
-  - PayUIndia-CheckoutPro (5.4.0):
+  - PayUIndia-CheckoutPro (5.8.0):
     - PayUIndia-Analytics (= 3.0)
-    - PayUIndia-AssetLibrary (~> 3.2)
+    - PayUIndia-AssetLibrary (~> 3.3)
     - PayUIndia-CardScanner (~> 1.0)
-    - PayUIndia-CheckoutProBase (~> 5.4)
+    - PayUIndia-CheckoutProBase (~> 5.8)
     - PayUIndia-CrashReporter (~> 2.1)
-    - PayUIndia-Custom-Browser (~> 9.1)
+    - PayUIndia-Custom-Browser (~> 9.2)
     - PayUIndia-NativeOtpAssist (~> 2.1)
     - PayUIndia-NetworkReachability (~> 1.0)
-    - PayUIndia-PayUParams (~> 4.4)
-    - PayUIndia-PG-SDK (~> 8.7)
-    - PayUIndia-UPICore (~> 7.0)
-  - PayUIndia-CheckoutProBase (5.4.0):
-    - PayUIndia-PayUParams (~> 4.4)
+    - PayUIndia-PayUParams (~> 4.7)
+    - PayUIndia-PG-SDK (~> 9.1)
+    - PayUIndia-UPICore (~> 7.1)
+  - PayUIndia-CheckoutProBase (5.8.0):
+    - PayUIndia-PayUParams (~> 4.7)
   - PayUIndia-CrashReporter (2.1.0)
-  - PayUIndia-Custom-Browser (9.1.2):
+  - PayUIndia-Custom-Browser (9.2.0):
     - PayUIndia-Analytics (= 3.0)
   - PayUIndia-Logger (4.0.0)
-  - PayUIndia-NativeOtpAssist (2.1.2):
+  - PayUIndia-NativeOtpAssist (2.1.3):
     - PayUIndia-Analytics (~> 3.0)
     - PayUIndia-CrashReporter (~> 2.1)
     - PayUIndia-NetworkReachability (~> 1.0)
-    - PayUIndia-PayUParams (~> 4.0)
+    - PayUIndia-PayUParams (~> 4.5)
   - PayUIndia-Networking (4.0.0):
     - PayUIndia-Logger (= 4.0.0)
   - PayUIndia-NetworkReachability (1.0.1)
-  - PayUIndia-PayUParams (4.4.0)
-  - PayUIndia-PG-SDK (8.7.0):
+  - PayUIndia-PayUParams (4.7.0)
+  - PayUIndia-PG-SDK (9.1.1):
     - PayUIndia-CrashReporter (~> 2.1)
     - PayUIndia-NetworkReachability (~> 1.0)
-    - PayUIndia-PayUParams (~> 4.4)
-  - PayUIndia-UPICore (7.0.1):
+    - PayUIndia-PayUParams (~> 4.7)
+  - PayUIndia-UPICore (7.1.1):
     - PayUIndia-Networking (~> 4.0)
-    - PayUIndia-PayUParams (~> 4.3)
+    - PayUIndia-PayUParams (~> 4.5)
   - RCT-Folly (2020.01.13.00):
     - boost-for-react-native
     - DoubleConversion
@@ -241,8 +241,8 @@ PODS:
     - React-jsi (= 0.64.4)
     - React-perflogger (= 0.64.4)
   - React-jsinspector (0.64.4)
-  - react-native-biz-sdk (3.0.0):
-    - PayUIndia-CheckoutPro (~> 5.4)
+  - react-native-biz-sdk (3.0.2):
+    - PayUIndia-CheckoutPro (~> 5.8)
     - React
   - React-perflogger (0.64.4)
   - React-RCTActionSheet (0.64.4):
@@ -425,22 +425,22 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: fa8275d5086566e22a26ddc385ab5772e7f9b1bd
-  FBReactNativeSpec: 15ee3effb4874107f07c5d38eb10b07758e4a240
+  FBReactNativeSpec: b6657c807fe3ed097342b93f2d10d7a008fa34f3
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   PayUIndia-Analytics: a23768b29283ef781783f38a99c1cf2235020d58
-  PayUIndia-AssetLibrary: 09677a1cb9a6c21e1cb9e4143e0898d9139982f4
+  PayUIndia-AssetLibrary: d72c575888a38b1f172fcda4e7eac1cdb3ded908
   PayUIndia-CardScanner: 42a10e1112f1bc954fdb407dd6de472fbf31fa27
-  PayUIndia-CheckoutPro: e93ccab6141eea60b74e249a88a36214130a507f
-  PayUIndia-CheckoutProBase: fc961269896e82c7108f230189e05bec6487e784
+  PayUIndia-CheckoutPro: b03d41b8c2e3b5c937b2446a069e7e2cfbf770ae
+  PayUIndia-CheckoutProBase: 4299fc5f60b4f1de348417dbfb55ca473a04f9fd
   PayUIndia-CrashReporter: 597caf134e85f9b3bde7d2045cae2def1b86c544
-  PayUIndia-Custom-Browser: b5f2a5aea15dfe5e75e64634ecd63ef7247a2693
+  PayUIndia-Custom-Browser: a59cd7aa369664e1b6d212c1124d78ee2c5e98bc
   PayUIndia-Logger: e353d9dd576bac593e428dfbadedf337cbb48b78
-  PayUIndia-NativeOtpAssist: 574b763ea44f370652fbbedcab1096048a21fbec
+  PayUIndia-NativeOtpAssist: 2ee7c1d055d97a1b30313bc883b7c4a10ca8ef27
   PayUIndia-Networking: bf53f743484256303e24d4e763e6097f04af769c
   PayUIndia-NetworkReachability: 99e69781b3be99d7b713075ab7b73e6d73a153e4
-  PayUIndia-PayUParams: a9a1bcd472d6ea0bb98dcae479ebd7600658480f
-  PayUIndia-PG-SDK: e2148bcc6c7927327f542e2a2db7f89f5cc75038
-  PayUIndia-UPICore: a0d959c31b7ebf54bf26519f27efee2e7982a932
+  PayUIndia-PayUParams: ccbe8b24328efae18e494b129c71761d5e3c4335
+  PayUIndia-PG-SDK: c98f4fb6368af7a40794f0587647f0ee39e89dcb
+  PayUIndia-UPICore: 5b1e5e4acbfff3fc5fa253c9219b7e1deb89bd41
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: f85fa00af016059cf88b90b8f8ff9a6af9e4b6c3
   RCTTypeSafety: 5279aaf0fb1ad715cbbbbee32d5c98c72598bc9c
@@ -452,7 +452,7 @@ SPEC CHECKSUMS:
   React-jsi: 64f80675a66899bf0f4a58b8e3908966fa516234
   React-jsiexecutor: 8c077bef1c64430b6034f27df1000d194551e2eb
   React-jsinspector: d4f6973dd474357dbaaf6f52f31ffc713bf3e766
-  react-native-biz-sdk: 41f5dbce7f125f3bc6a17d8d27a6c760c13720c6
+  react-native-biz-sdk: 8fbea5317126da50bed5114a07e3cbb5f2f2428e
   React-perflogger: 5a890ca0911669421b7611661e9b58f91c805f5c
   React-RCTActionSheet: bd180e0879f8424a73650c5c28fbef4f3b5b27fb
   React-RCTAnimation: 1004d2b4be1f2cedfdc4cb2326adc95b989e6c6b
