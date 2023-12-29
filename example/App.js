@@ -21,12 +21,12 @@
      const [firstName, setFirstName] = useState('firstName');
      const [email, setEmail] = useState('test@gmail.com');
      const [phone, setPhone] = useState('9999999999');
-     const [ios_surl, setIosSurl] = useState('https://payu.herokuapp.com/ios_success');
-     const [ios_furl, setIosFurl] = useState('https://payu.herokuapp.com/ios_failure');
+     const [ios_surl, setIosSurl] = useState('https://cbjs.payu.in/sdk/success');
+     const [ios_furl, setIosFurl] = useState('https://cbjs.payu.in/sdk/failure');
  
      const [environment, setEnvironment] = useState(1 + "");
-     const [android_surl, setAndroidSurl] = useState('https://payu.herokuapp.com/success');
-     const [android_furl, setAndroidFurl] = useState('https://payu.herokuapp.com/failure');
+     const [android_surl, setAndroidSurl] = useState('https://cbjs.payu.in/sdk/success');
+     const [android_furl, setAndroidFurl] = useState('https://cbjs.payu.in/sdk/failure');
      const [udf1, setUdf1] = useState('udf1');
      const [udf2, setUdf2] = useState('udf2');
      const [udf3, setUdf3] = useState('udf3');
