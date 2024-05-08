@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "js-sha512": "^0.8.0",
-    "payu-non-seam-less-react": "^3.0.4",
+    "payu-non-seam-less-react": "^3.0.12",
     "react": "18.1.0",
     "react-native": "0.70.6"
   },

@@ -13,5 +13,37 @@ use_react_native!(
   )
 
   use_frameworks!
+  def add_cpp_check
+      filepaths = ['../node_modules/react-native/ReactCommon/yoga/yoga/CompactValue.h',
+      '../node_modules/react-native/ReactCommon/yoga/yoga/Utils.h',
+      '../node_modules/react-native/ReactCommon/yoga/yoga/Yoga-internal.h']
+      
+      
+      filepaths.each do | filepath |
+        contents = []
+        if File.exist?(filepath)
+          file = File.open(filepath, 'r')
+          cppNotAdded = true
+          file.each_line do | line |
+            if cppNotAdded && line.include?("#ifdef __cplusplus")
+              cppNotAdded = false
+            end
+            contents << line
+          end
+          file.close
+          if cppNotAdded
+            contents.insert(0, "#ifdef __cplusplus")
+            contents.insert(contents.length, "#endif")
+            file = File.open(filepath, 'w') do |f|
+              f.puts(contents)
+            end
+          end
+        end
+      end
+  end
+
+  post_install do | installer |
+    add_cpp_check
+  end
 
 end

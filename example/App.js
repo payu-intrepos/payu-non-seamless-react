@@ -194,10 +194,10 @@
          var siParamObject = {
              isFreeTrial: true,
              billingAmount: '10',
-             billingInterval: 1,
-             paymentStartDate: '2023-04-20',
-             paymentEndDate: '2023-04-30',
-             billingCycle: 'daily', //Can be any of 'daily','weekly','yearly','adhoc','once','monthly'
+             billingInterval: '1',
+             paymentStartDate: '2024-05-20',
+             paymentEndDate: '2025-04-30',
+             billingCycle: 'DAILY', //Can be any of 'daily','weekly','yearly','adhoc','once','monthly'
              remarks: 'Test SI transcaction',
              billingCurrency: 'INR'
          }
