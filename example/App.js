@@ -8,10 +8,10 @@
  * https://github.com/facebook/react-native
  */
 
- import React, { useState, useEffect } from 'react';
- import { Platform, StyleSheet, Text, TextInput, View, Button, NativeModules, Alert, Switch, ScrollView, PermissionsAndroid, DeviceEventEmitter, NativeEventEmitter } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { Platform, StyleSheet, Text, TextInput, View, Button, NativeModules, Alert, Switch, ScrollView, PermissionsAndroid, DeviceEventEmitter } from 'react-native';
  import { sha512 } from 'js-sha512';
- const { PayUBizSdk } = NativeModules;
+const { PayUBizSdk, MainActivityLifecycleEmitter } = NativeModules;
  
  export default App= () => {
  
@@ -32,7 +32,7 @@
      const [udf3, setUdf3] = useState('udf3');
      const [udf4, setUdf4] = useState('udf4');
      const [udf5, setUdf5] = useState('udf5');
-     const [merchantSalt, setMerchantSalt] = useState('1b1b0');
+     const [merchantSalt, setMerchantSalt] = useState('4R38IvwiV57FwVpsgOvTXBdLE4tHUXFW');
  
      const [userCredential, setUserCredential] = useState('umang:arya');
  
@@ -55,6 +55,7 @@
      const [autoApprove, setAutoApprove] = useState(false);
      const [merchantSMSPermission, setMerchantSMSPermission] = useState(false);
      const [showAlert, setShowAlert] = useState(false);
+    const isPayUMethodCalled = useRef(false);
  
      displayAlert = (title, value) => {
          if (showAlert == false) {
@@ -122,13 +123,11 @@
  
      //Register eventEmitters here
      useEffect(() => {
-         const eventEmitter = new NativeEventEmitter(PayUBizSdk);
- 
-         payUOnPaymentSuccess = eventEmitter.addListener('onPaymentSuccess', onPaymentSuccess);
-         payUOnPaymentFailure = eventEmitter.addListener('onPaymentFailure', onPaymentFailure);
-         payUOnPaymentCancel = eventEmitter.addListener('onPaymentCancel', onPaymentCancel);
-         payUOnError = eventEmitter.addListener('onError', onError);
-         payUGenerateHash = eventEmitter.addListener('generateHash', generateHash);
+        payUOnPaymentSuccess = DeviceEventEmitter.addListener('onPaymentSuccess', onPaymentSuccess);
+        payUOnPaymentFailure = DeviceEventEmitter.addListener('onPaymentFailure', onPaymentFailure);
+        payUOnPaymentCancel = DeviceEventEmitter.addListener('onPaymentCancel', onPaymentCancel);
+        payUOnError = DeviceEventEmitter.addListener('onError', onError);
+        payUGenerateHash = DeviceEventEmitter.addListener('generateHash', generateHash);
     //Unregister eventEmitters here
          return () => {
             console.log("Unsubscribed!!!!")
@@ -140,6 +139,21 @@
        }
 
      }, [merchantSalt])
+
+    useEffect(() => {
+        if (Platform.OS !== 'android' || !MainActivityLifecycleEmitter) {
+            return;
+        }
+
+        mainActivityLifecycleListener = DeviceEventEmitter.addListener('MainActivityLifecycle', onMainActivityLifecycle);
+        MainActivityLifecycleEmitter.setJsListenerReady(true);
+        MainActivityLifecycleEmitter.flushPendingEvents();
+
+        return () => {
+            MainActivityLifecycleEmitter.setJsListenerReady(false);
+            mainActivityLifecycleListener.remove();
+        };
+    }, []);
  
      onPaymentSuccess = (e) => {
          console.log(e.merchantResponse);
@@ -165,6 +179,12 @@
          console.log(e.hashString);
          sendBackHash(e.hashName, e.hashString + merchantSalt);
      }
+
+    onMainActivityLifecycle = (e) => {
+        const methodName = e && e.methodName ? e.methodName : 'unknown';
+        console.log('MainActivity lifecycle method:', methodName, e, 'isPayUMethodCalled:', isPayUMethodCalled.current);
+    }
+
      createPaymentParams = () => {
          var txnid = new Date().getTime().toString();
          console.log('AutoSelectOtp: '+autoSelectOtp +'MerchantSmsPermission: '+merchantSMSPermission);
@@ -248,6 +268,7 @@
      }
      launchPayU = () => {
          console.log('Method launched amount =' + amount);
+        isPayUMethodCalled.current = true;
          PayUBizSdk.openCheckoutScreen(createPaymentParams());
      }
      return (

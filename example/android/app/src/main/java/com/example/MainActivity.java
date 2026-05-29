@@ -12,4 +12,41 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "example";
     }
+
+    @Override
+    protected void onCreate(android.os.Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        System.out.println("onCreateReactcalled");
+        MainActivityLifecycleModule.emitLifecycleEvent("onCreate");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        MainActivityLifecycleModule.emitLifecycleEvent("onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainActivityLifecycleModule.emitLifecycleEvent("onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        MainActivityLifecycleModule.emitLifecycleEvent("onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        MainActivityLifecycleModule.emitLifecycleEvent("onStop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        MainActivityLifecycleModule.emitLifecycleEvent("onDestroy");
+        super.onDestroy();
+    }
 }
